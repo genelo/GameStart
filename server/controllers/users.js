@@ -2,8 +2,10 @@ const { updateAddress, createUser, addConsoles, updateProfilePicture, getTradeAm
 
 module.exports = {
   insertAddress: (req, res) => {
+    //should work
     //requires body params {address: address, userID: userID}
-    const {address, userID} = req.body;
+    console.log(req.body);
+    const { address, userID } = req.body;
     updateAddress(address, userID)
       .then(() => {
         res.sendStatus(201);
@@ -14,21 +16,23 @@ module.exports = {
       })
   },
 
-  insertUser: async (req, res) => {
+  insertUser: (req, res) => {
+    console.log(req.body, 'this is req body')
     //requires body params {first_name: val, last_name: val, username: val, password: val, email_address: val}
     const userObj = req.body;
+    console.log(userObj)
     createUser(userObj)
       .then(() => {
         res.sendStatus(201);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err, 'this is err');
       })
   },
 
   insertConsoles: (req, res) => {
     //requires body params {system: val, userID: val}
-    const {system, userID} = req.body;
+    const { system, userID } = req.body;
     addConsoles(system, userID)
       .then(() => {
         res.sendStatus(201);
@@ -41,7 +45,7 @@ module.exports = {
 
   changeProfilePic: (req, res) => {
     //requires body params {imageURL: val, userID: val}
-    const {imageURL, userID} = req.body;
+    const { imageURL, userID } = req.body;
     updateProfilePicture(imageURL, userID)
       .then(() => {
         res.sendStatus(201);
@@ -54,9 +58,11 @@ module.exports = {
 
   getTradeCounter: (req, res) => {
     //requires query params of {userID: val}
-    const {userID} = req.query;
+    console.log('hitting here')
+    const { userID } = req.query;
     getTradeAmount(userID)
       .then((tradeCount) => {
+        console.log(tradeCount)
         res.send(tradeCount);
       })
       .catch((err) => {
