@@ -209,9 +209,14 @@ export const TradeList = ({ navigation }) => {
 
 export const TradeView = ({ navigation, route }) => {
   const [tradeData, setTradeData] = useState([]);
+<<<<<<<< HEAD:Components/Trade/TradeScreens.js
+  const [tradeGroup, setTradeGroup] = useState(route.params.group)
+  const conversationId =
+========
   const [tradeGroup, setTradeGroup] = useState(route.params.group);
   const [tradeStatus, setTradeStatus] = useState(route.params.trade_status)
 
+>>>>>>>> de67dde87e561304cc32311e2a345b16ff1e3bae:Components/Trades/TradeScreens.js
   useEffect(() => {
     setTradeData(route.params.data)
     setTradeGroup(route.params.group)
