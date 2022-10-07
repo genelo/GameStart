@@ -253,7 +253,7 @@ export const TradeView = ({ navigation, route }) => {
       <View style={styles.decision}>
           {tradeStatus === 'accepted' ?
           <React.Fragment>
-            <Button containerStyle={styles.decisionItem} title="Message" color='#00B4d8'/>
+            <Button containerStyle={styles.decisionItem} title="Message" color='#00B4d8' onPress={openMessaging} />
             <Button
               containerStyle={styles.decisionItem}
               title="Cancel"
@@ -268,7 +268,7 @@ export const TradeView = ({ navigation, route }) => {
           :
           tradeGroup === 'incoming' ?
           <React.Fragment>
-            <Button containerStyle={styles.decisionItem} title="Accept" color='#00B4d8'/>
+            <Button containerStyle={styles.decisionItem} title="Accept" color='#00B4d8' onPress={createConversation}/>
             <Button
               containerStyle={styles.decisionItem}
               title="Deny"
