@@ -188,11 +188,26 @@ export const TradeList = ({ navigation }) => {
 export const TradeView = ({ navigation, route }) => {
   const [tradeData, setTradeData] = useState([]);
   const [tradeGroup, setTradeGroup] = useState(route.params.group)
-
+  const conversationId =
   useEffect(() => {
     setTradeData(route.params.data)
     setTradeGroup(route.params.group)
   }, [])
+
+  const openMessaging = async (conversationId=null) => {
+    if(conversationId === null){
+      conversationId = await axios.post(`http://localhost:8000/api/messages/conversations/id/${tradeData.id}`, {tradeId : tradeData.id})
+    }
+
+    navigation.navigate('Messaging', {conversationId: conversationId, user: tradeData.myusername, otherUser : tradeData.theirusername, item: tradeData, trades: tradeGroup, profilepic: tradeData.theirprofilepic});
+  };
+
+  const createConversation = async () => {
+    const conversationId = await axios.post('http://localhost:8000/api/messages/conversations', {tradeId : tradeData.id}).data.id;
+    console.log(conversationId);
+    openMessaging(conversationId);
+  };
+
 
   return (
     <View style={styles.container}>
